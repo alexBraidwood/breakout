@@ -24,6 +24,8 @@ public:
     std::unordered_map<std::string, Shader> shaders;
     std::unordered_map<std::string, Texture2d> textures;
 
+    Resources() = default;
+
     /**
      * Loads a shader programs from the provided shader files
      * @param vShaderFile - Vertex shader file location
@@ -57,9 +59,6 @@ public:
      * Cleans up and de-allocates resources held by container
      */
     void clear();
-
-private:
-    Resources() = default;
 };
 
 }
