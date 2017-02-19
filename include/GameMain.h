@@ -10,12 +10,14 @@
 
 #include <GameState.h>
 #include <SDL_GLWindow.h>
+#include <Resources.h>
 
 namespace core {
 
 class GameMain {
 public:
     SDL_GLWindow* glWindow;
+    Resources resourceBatch;
     GameState state;
     int width, height;
 

@@ -11,7 +11,8 @@
 enum class GameState {
     Active,
     Menu,
-    Win
+    Win,
+    Quit
 };
 
 #endif //BREAKOUT_GAMESTATE_H

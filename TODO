@@ -1,3 +1,5 @@
 - GameTimer, need the ability to grab delta time
 - Key press handling
 - Gameplay
+- Handle moving shader files around
+- Compression?

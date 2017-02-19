@@ -16,7 +16,8 @@ target_sources(breakout PRIVATE
         src/Texture2d.cpp
         src/Resources.cpp
         src/SDL_window.cpp
-        src/SDL_GLWindow.cpp)
+        src/SDL_GLWindow.cpp
+        src/GameClock.cpp)
 
 target_include_directories(breakout PRIVATE
         include
