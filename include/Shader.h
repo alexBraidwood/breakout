@@ -21,6 +21,7 @@ private:
     GLuint shaderProgram;
     GLuint vertexShader;
     GLuint fragmentShader;
+    GLuint geometryShader;
     std::string lastShaderError;
 
     std::string readFile(const std::string& filename);
@@ -30,6 +31,7 @@ private:
 public:
     bool loadVertexShader(const std::string& filename);
     bool loadFragmentShader(const std::string& filename);
+    bool loadGeometryShader(const std::string& filename);
     bool link();
     GLuint id();
 

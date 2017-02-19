@@ -74,6 +74,28 @@ bool Shader::loadVertexShader(const std::string& filename) {
     return true;
 }
 
+bool Shader::loadGeometryShader(const std::string& filename){
+    GLuint shader;
+    shader = glCreateShader(GL_GEOMETRY_SHADER);
+
+    auto shaderSource = readFile(filename);
+    auto shaderCString = shaderSource.c_str();
+    GLint shaderLength = shaderSource.length();
+
+    glShaderSource(shader, 1, &shaderCString, &shaderLength);
+    glCompileShader(shader);
+    int wasCompiled = GL_FALSE;
+    glGetShaderiv(geometryShader, GL_COMPILE_STATUS, &wasCompiled);
+
+    if (wasCompiled == GL_FALSE) {
+        findShaderError(geometryShader);
+        return false;
+    }
+
+    glAttachShader(shaderProgram, geometryShader);
+    return true;
+}
+
 std::string Shader::readFile(const std::string& filename) {
     std::ifstream input(filename);
     std::string result;
