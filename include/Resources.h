@@ -21,8 +21,8 @@ namespace core {
 
 class Resources {
 public:
-    std::unordered_map<std::string, Shader> shaders;
-    std::unordered_map<std::string, Texture2d> textures;
+    std::unordered_map<std::string, graphics::Shader> shaders;
+    std::unordered_map<std::string, graphics::Texture2d> textures;
 
     Resources() = default;
 
@@ -34,27 +34,27 @@ public:
      * @param name - Name to associate with shader
      * @return Generated shader program.
      */
-    Shader& loadShader(const std::string& vShaderFile, const std::string& fShaderFile, const std::string& gShaderFile, const std::string& name);
+    graphics::Shader& loadShader(const std::string& vShaderFile, const std::string& fShaderFile, const std::string& gShaderFile, const std::string& name);
     /**
      * Retrieves a loaded shader
      * @param name - Name associated with shader
      * @return Stored shader program
      */
-    Shader& getShader(const std::string& name);
+    graphics::Shader& getShader(const std::string& name);
     /**
      * Loads a Texture from the provided file path
      * @param file - Location of texture to load
-     * @param alpha - Alpha channel (0 to 255)
+     * @param alpha - Whether or not to include alpha channel
      * @param name - Name to associate with Texture
      * @return Generated Texture2d
      */
-    Texture2d& loadTexture(const std::string& file, GLboolean alpha, const std::string& name);
+    graphics::Texture2d& loadTexture(const std::string& file, GLboolean alpha, const std::string& name);
     /**
      * Retrieves a loaded Texture
      * @param name - Name associated with Texture
      * @return Stored texture
      */
-    Texture2d& getTexture(const std::string& name);
+    graphics::Texture2d& getTexture(const std::string& name);
     /**
      * Cleans up and de-allocates resources held by container
      */

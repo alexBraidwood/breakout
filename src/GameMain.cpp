@@ -20,3 +20,15 @@ void GameMain::init() {
 void GameMain::start() {
 
 }
+
+void GameMain::processInput(float dt) {
+
+}
+
+void GameMain::update(float dt) {
+
+}
+
+void GameMain::render() {
+
+}

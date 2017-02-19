@@ -6,6 +6,7 @@
  */
 
 #include <Texture2d.h>
+#include <SOIL.h>
 
 using namespace graphics;
 
@@ -33,4 +34,20 @@ void Texture2d::generate(GLuint width, GLuint height, unsigned char* data) {
 
 void Texture2d::bind() const {
     glBindTexture(GL_TEXTURE_2D, this->id);
+}
+
+Texture2d Texture2d::loadTextureFromFile(const std::string& filename, GLboolean alpha) {
+    Texture2d texture;
+    if (alpha) {
+        texture.internalFormat = GL_RGBA;
+        texture.imageFormat = GL_RGBA;
+    }
+    int width, height;
+    unsigned char* imageData = SOIL_load_image(
+            filename.c_str(),
+            &width, &height, 0,
+            texture.imageFormat == GL_RGBA ? SOIL_LOAD_RGBA : SOIL_LOAD_RGB);
+    texture.generate(width, height, imageData);
+    SOIL_free_image_data(imageData);
+    return texture;
 }

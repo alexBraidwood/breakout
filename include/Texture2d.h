@@ -9,6 +9,7 @@
 #define BREAKOUT_TEXTURE2D_H
 
 #include <GL/glew.h>
+#include <string>
 
 namespace graphics {
 
@@ -40,6 +41,8 @@ public:
     void generate(GLuint width, GLuint height, unsigned char* data);
 
     void bind() const;
+
+    static Texture2d loadTextureFromFile(const std::string& filename, GLboolean alpha);
 };
 
 }
