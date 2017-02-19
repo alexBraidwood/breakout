@@ -1,6 +1,9 @@
-//
-// Created by Maddog on 7/31/2016.
-//
+/*
+ * File: Shader.h.
+ * Created by: Alex Braidwood.
+ * Date: Feb 19, 2017.
+ * Notice: Copyright (c) 2017 The Bat Forge. All Rights Reserved.
+ */
 
 #ifndef GAMEPROJECT_SHADER_H
 #define GAMEPROJECT_SHADER_H

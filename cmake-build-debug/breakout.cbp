@@ -363,6 +363,9 @@
 		<Unit filename="/home/alex/dev/cpp/breakout/src/Shader.cpp">
 			<Option target="breakout"/>
 		</Unit>
+		<Unit filename="/home/alex/dev/cpp/breakout/src/Texture2d.cpp">
+			<Option target="breakout"/>
+		</Unit>
 		<Unit filename="/home/alex/dev/cpp/breakout/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

@@ -1,6 +1,9 @@
-//
-// Created by alex on 2/19/17.
-//
+/*
+ * File: Shader.cpp.
+ * Created by: Alex Braidwood.
+ * Date: Feb 19, 2017.
+ * Notice: Copyright (c) 2017 The Bat Forge. All Rights Reserved.
+ */
 
 #include <Shader.h>
 #include <fstream>

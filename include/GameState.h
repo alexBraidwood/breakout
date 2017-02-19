@@ -1,6 +1,9 @@
-//
-// Created by alex on 2/19/17.
-//
+/*
+ * File: GameState.h.
+ * Created by: Alex Braidwood.
+ * Date: Feb 19, 2017.
+ * Notice: Copyright (c) 2017 The Bat Forge. All Rights Reserved.
+ */
 
 #ifndef BREAKOUT_GAMESTATE_H
 #define BREAKOUT_GAMESTATE_H
