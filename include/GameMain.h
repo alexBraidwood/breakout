@@ -9,11 +9,13 @@
 #define BREAKOUT_GAMEMAIN_H
 
 #include <GameState.h>
+#include <SDL_GLWindow.h>
 
 namespace core {
 
 class GameMain {
 public:
+    SDL_GLWindow* glWindow;
     GameState state;
     int width, height;
 

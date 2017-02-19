@@ -10,13 +10,12 @@
 #define BREAKOUT_SDL_WINDOW_H
 
 #include <memory>
-#include <Handle.h>
 
 struct SDL_Window;
 
 namespace core {
 
-class SDL_window : public Handle<SDL_Window> {
+class SDL_window {
 
 public:
     /**
@@ -29,6 +28,8 @@ public:
      */
     virtual ~SDL_window();
 
+    SDL_Window* get() const;
+
     SDL_window(const SDL_window&) = delete;
     SDL_window& operator=(const SDL_window&) = delete;
 
@@ -38,7 +39,10 @@ public:
      * @param width The Initial Window Width
      * @return Ready-to-go SDL2 Window
      */
-    static std::unique_ptr<SDL_window> create(int height, int width);
+    static SDL_window* create(int height, int width);
+
+private:
+    SDL_Window* windowHandle;
 };
 
 }

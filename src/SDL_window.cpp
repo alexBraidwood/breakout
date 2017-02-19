@@ -13,15 +13,19 @@
 using namespace core;
 
 SDL_window::SDL_window(SDL_Window* handle)
-    : Handle(handle) { }
+    : windowHandle(handle) { }
 
 SDL_window::~SDL_window() {
-    if(handle != nullptr) {
-        SDL_DestroyWindow(handle);
+    if(windowHandle != nullptr) {
+        SDL_DestroyWindow(windowHandle);
     }
 }
 
-std::unique_ptr<SDL_window> SDL_window::create(int height, int width) {
+SDL_Window* SDL_window::get() const {
+    return windowHandle;
+}
+
+SDL_window* SDL_window::create(int height, int width) {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_GAMECONTROLLER | SDL_INIT_TIMER) < 0) {
         // TODO(Alex): Handle the error here (assert maybe? it shouldn't fail)
         std::cout << "Failed to initialize SDL properly " << SDL_GetError() << std::endl;
@@ -30,5 +34,5 @@ std::unique_ptr<SDL_window> SDL_window::create(int height, int width) {
     auto window_handle = SDL_CreateWindow("Game Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, height, width, SDL_WINDOW_OPENGL);
     assert(window_handle);
 
-    return std::move(std::make_unique<SDL_window>(window_handle));
+    return new SDL_window(window_handle);
 }
