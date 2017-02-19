@@ -5,7 +5,7 @@
 		<Option title="breakout"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\gamelib\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\external\;CMake Files\external\glew\;CMake Files\external\glew\build\;CMake Files\external\glew\build\cmake\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug"/>
@@ -37,6 +37,46 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="breakout">
 				<Option output="/home/alex/dev/cpp/breakout/cmake-build-debug/breakout" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug"/>
@@ -45,7 +85,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/alex/dev/cpp/breakout/include"/>
-					<Add directory="/home/alex/dev/cpp/breakout/gamelib/include"/>
+					<Add directory="/home/alex/dev/cpp/breakout/external/glew/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -70,7 +110,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/alex/dev/cpp/breakout/include"/>
-					<Add directory="/home/alex/dev/cpp/breakout/gamelib/include"/>
+					<Add directory="/home/alex/dev/cpp/breakout/external/glew/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -87,14 +127,15 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="gamelib">
-				<Option output="/home/alex/dev/cpp/breakout/cmake-build-debug/gamelib/libgamelib.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug/gamelib"/>
+			<Target title="visualinfo">
+				<Option output="/home/alex/dev/cpp/breakout/cmake-build-debug/bin/visualinfo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug/bin"/>
 				<Option object_output="./"/>
-				<Option type="2"/>
+				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/alex/dev/cpp/breakout/gamelib/include"/>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add directory="/home/alex/dev/cpp/breakout/external/glew/build/cmake/../../include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -105,20 +146,21 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/gamelib/Makefile&quot;  VERBOSE=1 gamelib"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/gamelib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/gamelib/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/gamelib/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 visualinfo"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="gamelib/fast">
-				<Option output="/home/alex/dev/cpp/breakout/cmake-build-debug/gamelib/libgamelib.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug/gamelib"/>
+			<Target title="visualinfo/fast">
+				<Option output="/home/alex/dev/cpp/breakout/cmake-build-debug/bin/visualinfo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug/bin"/>
 				<Option object_output="./"/>
-				<Option type="2"/>
+				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/alex/dev/cpp/breakout/gamelib/include"/>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add directory="/home/alex/dev/cpp/breakout/external/glew/build/cmake/../../include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -129,27 +171,212 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/gamelib/Makefile&quot;  VERBOSE=1 gamelib/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/gamelib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/gamelib/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/gamelib/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 visualinfo/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glewinfo">
+				<Option output="/home/alex/dev/cpp/breakout/cmake-build-debug/bin/glewinfo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add directory="/home/alex/dev/cpp/breakout/external/glew/build/cmake/../../include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 glewinfo"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glewinfo/fast">
+				<Option output="/home/alex/dev/cpp/breakout/cmake-build-debug/bin/glewinfo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add directory="/home/alex/dev/cpp/breakout/external/glew/build/cmake/../../include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 glewinfo/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glew_s">
+				<Option output="/home/alex/dev/cpp/breakout/cmake-build-debug/lib/libGLEWd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add directory="/home/alex/dev/cpp/breakout/external/glew/build/cmake/../../include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 glew_s"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glew_s/fast">
+				<Option output="/home/alex/dev/cpp/breakout/cmake-build-debug/lib/libGLEWd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_STATIC"/>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add directory="/home/alex/dev/cpp/breakout/external/glew/build/cmake/../../include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 glew_s/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glew">
+				<Option output="/home/alex/dev/cpp/breakout/cmake-build-debug/lib/libGLEWd.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_BUILD"/>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add directory="/home/alex/dev/cpp/breakout/external/glew/build/cmake/../../include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 glew"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glew/fast">
+				<Option output="/home/alex/dev/cpp/breakout/cmake-build-debug/lib/libGLEWd.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DGLEW_BUILD"/>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add directory="/home/alex/dev/cpp/breakout/external/glew/build/cmake/../../include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 glew/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/dev/cpp/breakout/cmake-build-debug/external/glew/build/cmake/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/alex/dev/cpp/breakout/gamelib/src/GameMain.cpp">
-			<Option target="gamelib"/>
+		<Unit filename="/home/alex/dev/cpp/breakout/external/glew/include/GL/glew.h">
+			<Option target="glew_s"/>
+			<Option target="glew"/>
+		</Unit>
+		<Unit filename="/home/alex/dev/cpp/breakout/external/glew/include/GL/glxew.h">
+			<Option target="glew_s"/>
+			<Option target="glew"/>
+		</Unit>
+		<Unit filename="/home/alex/dev/cpp/breakout/external/glew/include/GL/wglew.h">
+			<Option target="glew_s"/>
+			<Option target="glew"/>
+		</Unit>
+		<Unit filename="/home/alex/dev/cpp/breakout/external/glew/src/glew.c">
+			<Option target="glew_s"/>
+			<Option target="glew"/>
+		</Unit>
+		<Unit filename="/home/alex/dev/cpp/breakout/external/glew/src/glewinfo.c">
+			<Option target="glewinfo"/>
+		</Unit>
+		<Unit filename="/home/alex/dev/cpp/breakout/external/glew/src/visualinfo.c">
+			<Option target="visualinfo"/>
 		</Unit>
 		<Unit filename="/home/alex/dev/cpp/breakout/main.cpp">
+			<Option target="breakout"/>
+		</Unit>
+		<Unit filename="/home/alex/dev/cpp/breakout/src/GameMain.cpp">
+			<Option target="breakout"/>
+		</Unit>
+		<Unit filename="/home/alex/dev/cpp/breakout/src/Shader.cpp">
 			<Option target="breakout"/>
 		</Unit>
 		<Unit filename="/home/alex/dev/cpp/breakout/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/home/alex/dev/cpp/breakout/gamelib/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\gamelib\"/>
+		<Unit filename="/home/alex/dev/cpp/breakout/external/glew/glew.pc.in">
+			<Option virtualFolder="CMake Files\external\glew\"/>
 		</Unit>
-		<Unit filename="/home/alex/dev/cpp/breakout/gamelib/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\gamelib\"/>
+		<Unit filename="/home/alex/dev/cpp/breakout/external/glew/glew.pc.in">
+			<Option virtualFolder="CMake Files\external\glew\"/>
+		</Unit>
+		<Unit filename="/home/alex/dev/cpp/breakout/external/glew/build/cmake/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\external\glew\build\cmake\"/>
+		</Unit>
+		<Unit filename="/home/alex/dev/cpp/breakout/external/glew/build/cmake/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\external\glew\build\cmake\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

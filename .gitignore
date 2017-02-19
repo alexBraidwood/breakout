@@ -49,7 +49,6 @@ fabric.properties
 # Compiled Object files
 *.slo
 *.lo
-*.o
 *.obj
 
 # Precompiled Headers
