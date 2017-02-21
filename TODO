@@ -1,4 +1,5 @@
-- GameTimer, need the ability to grab delta time
+TODO LIST
+==================
 - Key press handling
 - Gameplay
 - Handle moving shader files around

@@ -19,7 +19,7 @@ public:
     SDL_GLWindow* glWindow;
     Resources resourceBatch;
     GameState state;
-    int width, height;
+    float width, height;
 
     void start();
     void init();
