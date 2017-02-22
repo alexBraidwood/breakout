@@ -1,5 +1,9 @@
 TODO LIST
 ==================
+- Render some sprites on screen
+- Add top-level directory structure
+    eg. Source, Assets, Docs, Build
+- Draw some assets for the game
 - Key press handling
 - Gameplay
 - Handle moving shader files around

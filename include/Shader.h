@@ -33,7 +33,15 @@ public:
     bool loadFragmentShader(const std::string& filename);
     bool loadGeometryShader(const std::string& filename);
     bool link();
+    Shader& use();
     GLuint id();
+
+    void setFloat(const std::string& name, float value);
+    void setInteger(const std::string& name, int value);
+    void setVector2f(const std::string& name, const glm::vec2& value);
+    void setVector3f(const std::string& name, const glm::vec3& value);
+    void setVector4f(const std::string& name, const glm::vec4& value);
+    void setMatrix4(const std::string& name, const glm::mat4& matrix);
 
     Shader() = default;
     ~Shader();

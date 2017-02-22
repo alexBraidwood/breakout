@@ -8,6 +8,8 @@
 #include <Shader.h>
 #include <fstream>
 #include <cassert>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 using namespace graphics;
 
@@ -126,6 +128,35 @@ void Shader::findShaderError(GLuint shaderId) {
 
 GLuint Shader::id() {
     return shaderProgram;
+}
+
+Shader& Shader::use() {
+    glUseProgram(this->shaderProgram);
+    return *this;
+}
+
+void Shader::setFloat(const std::string& name, float value) {
+    glUniform1f(glGetUniformLocation(this->shaderProgram, name.c_str()), value);
+}
+
+void Shader::setInteger(const std::string& name, int value) {
+    glUniform1i(glGetUniformLocation(this->shaderProgram, name.c_str()), value);
+}
+
+void Shader::setVector2f(const std::string& name, const glm::vec2& value) {
+    glUniform2f(glGetUniformLocation(this->shaderProgram, name.c_str()), value.x, value.y);
+}
+
+void Shader::setVector3f(const std::string& name, const glm::vec3& value) {
+    glUniform3f(glGetUniformLocation(this->shaderProgram, name.c_str()), value.x, value.y, value.z);
+}
+
+void Shader::setVector4f(const std::string& name, const glm::vec4& value) {
+    glUniform4f(glGetUniformLocation(this->shaderProgram, name.c_str()), value.x, value.y, value.z, value.w);
+}
+
+void Shader::setMatrix4(const std::string& name, const glm::mat4& matrix) {
+    glUniformMatrix4fv(glGetUniformLocation(this->shaderProgram, name.c_str()), 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 Shader::~Shader() {
