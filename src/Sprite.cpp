@@ -6,6 +6,7 @@
  */
 
 #include <Sprite.h>
+#include <glm/gtc/matrix_transform.hpp>
 
 using namespace graphics;
 
@@ -35,7 +36,11 @@ void Sprite::init() {
     glBindVertexArray(0);
 }
 
-void Sprite::draw(Texture2d& texture, glm::vec2 position, glm::vec2 size, float rotation, glm::vec3 color) {
+void Sprite::setTexture(Texture2d& texture) {
+    this->texture = texture;
+}
+
+void Sprite::draw(glm::vec2 position, glm::vec2 size, float rotation, glm::vec3 color) {
     this->shader.use();
     glm::mat4 model;
     model = glm::translate(model, glm::vec3(position, 0.f));
@@ -50,9 +55,9 @@ void Sprite::draw(Texture2d& texture, glm::vec2 position, glm::vec2 size, float 
     this->shader.setVector3f("spriteColor", color);
 
     glActiveTexture(GL_TEXTURE0);
-    texture.bind();
+    this->texture.bind();
 
     glBindVertexArray(this->quadVAO);
-    glDrawArrays(GL_TRIANGLES);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
     glBindVertexArray(0);
 }

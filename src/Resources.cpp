@@ -36,6 +36,14 @@ Texture2d& Resources::getTexture(const std::string& name) {
     return textures.at(name);
 }
 
+Sprite& Resources::getSprite(const std::string& name) {
+    return sprites.at(name);
+}
+
+void Resources::addSprite(graphics::Sprite& sprite, const std::string& name) {
+    sprites.insert(std::make_pair(name, sprite));
+}
+
 void Resources::clear() {
     for (auto shaderPair : shaders) {
         glDeleteProgram(shaderPair.second.id());
