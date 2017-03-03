@@ -87,3 +87,6 @@ CTestTestfile.cmake
 
 /cmake-build-debug/
 !/external/
+
+# build dir
+/build
