@@ -27,7 +27,8 @@ private:
 
     std::string readFile(const std::string& filename);
     const std::string& getLastShaderError() const;
-    void findShaderError(GLuint shaderId);
+    void findShaderLinkError(GLuint shaderId);
+    void findShaderProgramError(GLuint shaderId);
 
 public:
     bool loadVertexShader(const std::string& filename);
@@ -44,8 +45,8 @@ public:
     void setVector4f(const std::string& name, const glm::vec4& value);
     void setMatrix4(const std::string& name, const glm::mat4& matrix);
 
-    Shader() = default;
-    ~Shader();
+    Shader();
+    ~Shader() = default;
 };
 
 }

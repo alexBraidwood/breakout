@@ -18,6 +18,7 @@ Shader& Resources::loadShader(const std::string& vShaderFile, const std::string&
     if (!gShaderFile.empty()) {
         shader.loadGeometryShader(gShaderFile);
     }
+    shader.link();
     this->shaders.insert(std::make_pair(name, shader));
     return getShader(name);
 }

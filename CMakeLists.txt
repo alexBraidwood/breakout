@@ -14,14 +14,14 @@ find_library(SOIL
 file(MAKE_DIRECTORY textures)
 file(COPY
         textures/hello.png
-        DESTINATION textures)
+        DESTINATION textures/)
 
 # Shader file copy-over
 file(MAKE_DIRECTORY shaders)
 file(COPY
         shaders/sprite_fragment.glsl
         shaders/sprite_vertex.glsl
-        DESTINATION shaders)
+        DESTINATION shaders/)
 
 set(CMAKE_C_FLAGS_DEBUG "-DDEBUG")
 

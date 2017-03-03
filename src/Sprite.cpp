@@ -10,6 +10,10 @@
 
 using namespace graphics;
 
+Sprite::Sprite(Shader& shader, Texture2d& texture) : shader(shader), texture(texture) {
+    init();
+}
+
 void Sprite::init() {
     GLuint VBO;
     GLfloat vertices[] = {
@@ -50,7 +54,7 @@ void Sprite::draw(glm::vec2 position, glm::vec2 size, float rotation, glm::vec3 
     model = glm::rotate(model, rotation, glm::vec3(0.f, 0.f, 1.f));
     model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.f));
 
-    model = glm::scale(model, glm::vec3(size, -1.f));
+    model = glm::scale(model, glm::vec3(size, 1.f));
     this->shader.setMatrix4("model", model);
     this->shader.setVector3f("spriteColor", color);
 

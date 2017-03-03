@@ -13,6 +13,12 @@
 
 using namespace graphics;
 
+Shader::Shader()
+    : shaderProgram(glCreateProgram()),
+      vertexShader(0),
+      geometryShader(0),
+      fragmentShader(0) { }
+
 const std::string& Shader::getLastShaderError() const {
     return this->lastShaderError;
 }
@@ -20,32 +26,35 @@ const std::string& Shader::getLastShaderError() const {
 bool Shader::link() {
     glLinkProgram(shaderProgram);
 
-    int isLinked = 0;
+    glDeleteShader(fragmentShader);
+    glDeleteShader(vertexShader);
+    glDeleteShader(geometryShader);
+
+    int isLinked;
     glGetProgramiv(shaderProgram, GL_LINK_STATUS, &isLinked);
 
     if (isLinked == GL_FALSE) {
-        findShaderError(shaderProgram);
+        findShaderLinkError(shaderProgram);
     }
 
-    return isLinked = GL_TRUE;
+    return isLinked == GL_TRUE;
 }
 
 bool Shader::loadFragmentShader(const std::string& filename) {
-    GLuint shader;
-    shader = glCreateShader(GL_FRAGMENT_SHADER);
+    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
     auto shaderSource = readFile(filename);
     auto shaderCString = shaderSource.c_str();
     GLint shaderLength = shaderSource.length();
 
-    glShaderSource(shader, 1, &shaderCString, &shaderLength);
-    glCompileShader(shader);
+    glShaderSource(fragmentShader, 1, &shaderCString, nullptr);
+    glCompileShader(fragmentShader);
 
-    int wasCompiled = GL_FALSE;
+    int wasCompiled;
     glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &wasCompiled);
 
     if (wasCompiled == GL_FALSE) {
-        findShaderError(fragmentShader);
+        findShaderProgramError(fragmentShader);
         return false;
     }
 
@@ -54,21 +63,20 @@ bool Shader::loadFragmentShader(const std::string& filename) {
 }
 
 bool Shader::loadVertexShader(const std::string& filename) {
-    GLuint shader;
-    shader = glCreateShader(GL_VERTEX_SHADER);
+    vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
     auto shaderSource = readFile(filename);
     auto shaderCString = shaderSource.c_str();
     GLint shaderLength = shaderSource.length();
 
-    glShaderSource(shader, 1, &shaderCString, &shaderLength);
-    glCompileShader(shader);
+    glShaderSource(vertexShader, 1, &shaderCString, nullptr);
+    glCompileShader(vertexShader);
 
-    int wasCompiled = GL_FALSE;
+    int wasCompiled;
     glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &wasCompiled);
 
     if (wasCompiled == GL_FALSE) {
-        findShaderError(vertexShader);
+        findShaderProgramError(vertexShader);
         return false;
     }
 
@@ -77,24 +85,24 @@ bool Shader::loadVertexShader(const std::string& filename) {
 }
 
 bool Shader::loadGeometryShader(const std::string& filename){
-    GLuint shader;
-    shader = glCreateShader(GL_GEOMETRY_SHADER);
+    geometryShader = glCreateShader(GL_GEOMETRY_SHADER);
 
     auto shaderSource = readFile(filename);
     auto shaderCString = shaderSource.c_str();
     GLint shaderLength = shaderSource.length();
 
-    glShaderSource(shader, 1, &shaderCString, &shaderLength);
-    glCompileShader(shader);
-    int wasCompiled = GL_FALSE;
+    glShaderSource(geometryShader, 1, &shaderCString, nullptr);
+    glCompileShader(geometryShader);
+    int wasCompiled;
     glGetShaderiv(geometryShader, GL_COMPILE_STATUS, &wasCompiled);
 
     if (wasCompiled == GL_FALSE) {
-        findShaderError(geometryShader);
+        findShaderProgramError(geometryShader);
         return false;
     }
 
     glAttachShader(shaderProgram, geometryShader);
+    glDeleteShader(geometryShader);
     return true;
 }
 
@@ -114,16 +122,26 @@ std::string Shader::readFile(const std::string& filename) {
     return result;
 }
 
-void Shader::findShaderError(GLuint shaderId) {
+void Shader::findShaderLinkError(GLuint shaderId) {
+    int length;
     int maxLength;
     glGetProgramiv(shaderId, GL_INFO_LOG_LENGTH, &maxLength);
+    char* shaderProgramInfoLog = new char[maxLength];
 
-    auto shaderProgramInfoLog = new char[maxLength];
-    glGetProgramInfoLog(shaderProgram, maxLength, &maxLength, shaderProgramInfoLog);
+    glGetShaderInfoLog(shaderId, maxLength, &length, shaderProgramInfoLog);
 
     lastShaderError.assign(shaderProgramInfoLog);
+}
 
-    delete shaderProgramInfoLog;
+void Shader::findShaderProgramError(GLuint shaderId) {
+    int length;
+    int maxLength;
+    glGetShaderiv(shaderId, GL_INFO_LOG_LENGTH, &maxLength);
+    char* shaderProgramInfoLog = new char[maxLength];
+
+    glGetShaderInfoLog(shaderId, maxLength, nullptr, shaderProgramInfoLog);
+
+    lastShaderError.assign(shaderProgramInfoLog);
 }
 
 GLuint Shader::id() {
@@ -157,14 +175,4 @@ void Shader::setVector4f(const std::string& name, const glm::vec4& value) {
 
 void Shader::setMatrix4(const std::string& name, const glm::mat4& matrix) {
     glUniformMatrix4fv(glGetUniformLocation(this->shaderProgram, name.c_str()), 1, GL_FALSE, glm::value_ptr(matrix));
-}
-
-Shader::~Shader() {
-    glUseProgram(0);
-    glDetachShader(shaderProgram, vertexShader);
-    glDetachShader(shaderProgram, fragmentShader);
-
-    glDeleteProgram(shaderProgram);
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
 }

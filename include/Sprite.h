@@ -20,7 +20,7 @@ namespace graphics {
 
 class Sprite {
 public:
-    Sprite(Shader& shader, Texture2d& texture) : shader(shader), texture(texture) {}
+    Sprite(Shader& shader, Texture2d& texture);
 
     ~Sprite() = default;
 

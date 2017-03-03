@@ -9,7 +9,6 @@
 #include <SDL2/SDL.h>
 #include <SDL_window.h>
 #include <GL/glew.h>
-
 using namespace core;
 
 SDL_GLWindow::SDL_GLWindow(SDL_GLContext context_handle, SDL_window* window)
@@ -42,9 +41,10 @@ SDL_GLWindow* SDL_GLWindow::create(SDL_window* window) {
         auto glContext = SDL_GL_CreateContext(window->get());
 
         glewExperimental = GL_TRUE;
-        if (glewInit() != GLEW_OK)
+        GLenum err = glewInit();
+        if (err != GLEW_OK)
         {
-            // Handle error
+            auto error = glewGetErrorString(err);
         }
 
         return new SDL_GLWindow(glContext, window);
