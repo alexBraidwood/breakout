@@ -9,6 +9,8 @@
 #include <Sprite.h>
 #include <Resources.h>
 
+using namespace core;
+
 GameObject::GameObject(std::string name)
         : position(0, 0), size(1, 1),
           velocity(0.f), color(0.f),
@@ -17,8 +19,10 @@ GameObject::GameObject(std::string name)
 }
 
 void GameObject::draw(core::Resources& resourceBatch) {
+    // TODO(Alex): Move out into an initialization routine.
     if (resourceBatch.getSprite("")) {
         auto sprite = graphics::Sprite(resourceBatch.getShader("sprite"), texture);
+        resourceBatch.addSprite(sprite);
     }
 
 }

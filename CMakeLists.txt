@@ -34,7 +34,8 @@ target_sources(breakout PRIVATE
         src/SDL_window.cpp
         src/SDL_GLWindow.cpp
         src/GameClock.cpp
-        src/Sprite.cpp)
+        src/Sprite.cpp
+        src/GameObject.cpp)
 
 target_include_directories(breakout PRIVATE
         include
