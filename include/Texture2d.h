@@ -15,6 +15,7 @@ namespace graphics {
 
 class Texture2d {
 public:
+    bool isReadyToDraw;
     GLuint id;
     GLuint width, height;
     GLuint internalFormat;

@@ -13,7 +13,7 @@
 using namespace graphics;
 
 Texture2d::Texture2d()
-    : width(0), height(0),
+    : width(0), height(0), isReadyToDraw(false),
       internalFormat(GL_RGB), imageFormat(GL_RGB),
       wrapS(GL_REPEAT), wrapT(GL_REPEAT),
       filterMin(GL_LINEAR), filterMax(GL_LINEAR) {
@@ -36,6 +36,9 @@ void Texture2d::generate(GLuint width, GLuint height, unsigned char* data) {
 
     // Unbind texture
     glBindTexture(GL_TEXTURE_2D, 0);
+
+    // Make sure we mark this as ready
+    isReadyToDraw = true;
 }
 
 void Texture2d::bind() const {

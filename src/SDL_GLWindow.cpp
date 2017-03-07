@@ -49,6 +49,8 @@ SDL_GLWindow* SDL_GLWindow::create(SDL_window* window) {
 
         return new SDL_GLWindow(glContext, window);
     }
+
+    return nullptr;
 }
 
 SDL_window* SDL_GLWindow::get_sdl_window() const {
