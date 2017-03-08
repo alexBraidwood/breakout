@@ -6,13 +6,9 @@
  */
 
 #include <GameMain.h>
-#include <GL/glew.h>
 #include <SDL2/SDL.h>
-#include <Shader.h>
-#include <Texture2d.h>
-#include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <Sprite.h>
+#include <BreakoutLevel.h>
 
 using namespace core;
 
@@ -32,6 +28,8 @@ void GameMain::init() {
     resourceBatch.loadTexture("textures/hello.png", GL_TRUE, "hello");
     auto sprite = graphics::Sprite(resourceBatch.getShader("sprite"), resourceBatch.getTexture("hello"));
     resourceBatch.addSprite(sprite, "hello_sprite");
+    auto levelone = breakout::Level();
+    levelone.load("levels/levelone.json");
 }
 
 void GameMain::start() {

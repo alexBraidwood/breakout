@@ -17,12 +17,13 @@
 using namespace breakout;
 
 
-void Level::load(const std::string& fileName, int levelWidth, int levelHeight) {
+void Level::load(const std::string& fileName) {
     this->bricks.clear();
     int tileCode;
 
     std::string line;
     std::ifstream fstream(fileName);
+    assert(fstream.is_open());
 
     rapidjson::IStreamWrapper isw(fstream);
     rapidjson::Document jsonDocument;
@@ -30,6 +31,7 @@ void Level::load(const std::string& fileName, int levelWidth, int levelHeight) {
 
     std::vector<std::vector<int>> tileData;
 
+    // TODO(Alex): Error? Not an array?
     for (auto& value : jsonDocument.GetArray()) {
         // TODO(Alex): Parse 2-D JSON Array into vector
     }

@@ -23,6 +23,12 @@ file(COPY
         shaders/sprite_vertex.glsl
         DESTINATION shaders/)
 
+# Level file copy-over
+file(MAKE_DIRECTORY levels)
+file(COPY
+        levels/levelone.json
+        DESTINATION levels/)
+
 set(CMAKE_C_FLAGS_DEBUG "-DDEBUG")
 
 target_sources(breakout PRIVATE
