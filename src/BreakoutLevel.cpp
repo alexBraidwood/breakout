@@ -12,6 +12,7 @@
 #include <sstream>
 #include <rapidjson.h>
 #include <document.h>
+#include <istreamwrapper.h>
 
 using namespace breakout;
 
@@ -22,9 +23,13 @@ void Level::load(const std::string& fileName, int levelWidth, int levelHeight) {
 
     std::string line;
     std::ifstream fstream(fileName);
-    std::vector<std::vector<int>> tileData;
+
+    rapidjson::IStreamWrapper isw(fstream);
     rapidjson::Document jsonDocument;
-    jsonDocument.ParseStream(fstream);
+    jsonDocument.ParseStream(isw);
+
+    std::vector<std::vector<int>> tileData;
+
     for (auto& value : jsonDocument.GetArray()) {
         // TODO(Alex): Parse 2-D JSON Array into vector
     }
