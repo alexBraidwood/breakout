@@ -35,13 +35,15 @@ target_sources(breakout PRIVATE
         src/SDL_GLWindow.cpp
         src/GameClock.cpp
         src/Sprite.cpp
-        src/GameObject.cpp)
+        src/GameObject.cpp
+        src/BreakoutLevel.cpp)
 
 target_include_directories(breakout PRIVATE
         include
         external/glew/include
         external/SOIL/src
-        external/glm)
+        external/glm
+        external/rapidjson)
 
 MESSAGE(STATUS "Soil found at: " ${SOIL})
 

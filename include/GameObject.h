@@ -9,6 +9,11 @@
 #ifndef BREAKOUT_GAMEOBJECT_H
 #define BREAKOUT_GAMEOBJECT_H
 
+#include <glm/glm.hpp>
+#include <string>
+#include <Texture2d.h>
+#include <Resources.h>
+
 namespace core {
 class GameObject {
 public:
@@ -16,16 +21,17 @@ public:
     glm::vec2 position;
     glm::vec2 size;
     glm::vec2 velocity;
+    glm::vec3 color;
 
     float rotation;
     bool isSolid;
     bool destroyed;
 
-    Texture2D texture;
+    graphics::Texture2d texture;
 
-    GameObject();
+    GameObject(const std::string& name);
 
-    virtual void draw();
+    virtual void draw(core::Resources& resourceBatch);
 };
 }
 

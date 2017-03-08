@@ -9,22 +9,25 @@
 #ifndef BREAKOUT_BREAKOUTLEVEL_H
 #define BREAKOUT_BREAKOUTLEVEL_H
 
+#include <vector>
+#include <string>
+#include <GameObject.h>
+#include <Resources.h>
+
 namespace breakout {
 
 class Level {
 public:
-    std::vector <GameObject> bricks;
-
-    static void load(const std::string& fileName, int levelWidth, int levelHeight);
-
-    void draw();
-
+    std::vector<core::GameObject> bricks;
+    void load(const std::string& fileName, int levelWidth, int levelHeight);
+    void draw(core::Resources& resourceBatch);
     bool isComplete();
+    Level() = default;
 
 private:
-    void init(std::vector <std::vector<int>> tileData, int levelWidth, int levelHeight);
+    void init(std::vector<std::vector<int>> tileData, int levelWidth, int levelHeight);
 
-    GameLevel() = default;
+
 };
 
 }
