@@ -25,11 +25,10 @@ void GameMain::init() {
     resourceBatch.loadShader("shaders/sprite_vertex.glsl", "shaders/sprite_fragment.glsl", "", "sprite");
     resourceBatch.getShader("sprite").use().setInteger("image", 0);
     resourceBatch.getShader("sprite").setMatrix4("projection", projection);
-    resourceBatch.loadTexture("textures/hello.png", GL_TRUE, "hello");
-    auto sprite = graphics::Sprite(resourceBatch.getShader("sprite"), resourceBatch.getTexture("hello"));
-    resourceBatch.addSprite(sprite, "hello_sprite");
+    resourceBatch.loadTexture("textures/block_solid.png", GL_TRUE, "block_solid");
+    resourceBatch.loadTexture("textures/block.png", GL_TRUE, "block");
     auto levelone = breakout::Level();
-    levelone.load("levels/levelone.json");
+    levelone.load("levels/levelone.json", this->width, this->height * 0.5f, resourceBatch);
 }
 
 void GameMain::start() {
@@ -53,12 +52,7 @@ void GameMain::render() {
     glClearColor(1.f, 1.f, 1.f, 1.f);
     glClear(GL_COLOR_BUFFER_BIT);
     // TODO(): Render stuff
-    auto sprite = resourceBatch.getSprite("hello_sprite");
-    sprite.draw(
-            glm::vec2(200, 200),
-            glm::vec2(300, 400),
-            0.f,
-            glm::vec3(1.f, 1.f, 1.f));
+
 
 
     glWindow->update();

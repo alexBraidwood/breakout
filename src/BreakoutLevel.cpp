@@ -17,7 +17,7 @@
 using namespace breakout;
 
 
-void Level::load(const std::string& fileName) {
+void Level::load(const std::string& fileName, int levelWidth, int levelHeight, core::Resources& resourceBatch) {
     this->bricks.clear();
     int tileCode;
 
@@ -28,11 +28,71 @@ void Level::load(const std::string& fileName) {
     rapidjson::IStreamWrapper isw(fstream);
     rapidjson::Document jsonDocument;
     jsonDocument.ParseStream(isw);
+    auto levelObject = jsonDocument.FindMember("Level");
+    auto levelArray = levelObject->value.GetArray();
 
     std::vector<std::vector<int>> tileData;
 
-    // TODO(Alex): Error? Not an array?
-    for (auto& value : jsonDocument.GetArray()) {
-        // TODO(Alex): Parse 2-D JSON Array into vector
+    for (rapidjson::SizeType i = 0; i < levelArray.Size(); ++i) {
+        tileData.push_back(std::vector<int>());
+        auto& rowVector = tileData[i];
+
+        for (auto& brick : levelArray[i].GetArray()) {
+            auto brickValue = brick.GetInt();
+            tileData[i].push_back(brickValue);
+        }
+    }
+
+    assert(tileData.size() > 0);
+    this->init(tileData, levelWidth, levelHeight, resourceBatch);
+}
+
+void Level::init(const std::vector<std::vector<int>>& tileData, int levelWidth, int levelHeight, core::Resources& resourceBatch) {
+    auto height = tileData.size();
+    auto width = tileData[0].size();
+    float unitWidth = levelWidth / static_cast<float>(width);
+    float unitHeight = levelHeight / static_cast<float>(height);
+
+    for (auto y = 0; y < height; ++y) {
+        for (auto x = 0; x < width; ++x) {
+            glm::vec2 pos(unitWidth * x, unitHeight * y);
+            glm::vec2 size(unitWidth, unitHeight);
+
+            if (tileData[y][x] == 1) {
+                core::GameObject gameObject(std::string("brick" + std::to_string(y) + std::to_string(x)));
+                gameObject.position = pos;
+                gameObject.size = size;
+                gameObject.color = glm::vec3(0.8f, 0.8f, 0.7f);
+                gameObject.texture = resourceBatch.getTexture("block_solid");
+                gameObject.isSolid = true;
+                this->bricks.push_back(gameObject);
+            }
+            else if (tileData[y][x] > 1) {
+                glm::vec3 color = glm::vec3(1.0f);
+
+                switch(tileData[y][x]) {
+                case 2: {
+                    color = glm::vec3(0.2f, 0.6f, 1.f);
+                } break;
+                case 3: {
+                    color = glm::vec3(0.0f, 0.7f, 0.f);
+                } break;
+                case 4: {
+                    color = glm::vec3(0.8f, 0.8f, 0.4f);
+                }
+                case 5: {
+                    color = glm::vec3(1.f, 0.5f, 0.f);
+                }
+                }
+
+                core::GameObject gameObject(std::string("brick" + std::to_string(y) + std::to_string(x)));
+                gameObject.position = pos;
+                gameObject.size = size;
+                gameObject.color = color;
+                gameObject.texture = resourceBatch.getTexture("block");
+                gameObject.isSolid = false;
+                this->bricks.push_back(gameObject);
+            }
+        }
     }
 }

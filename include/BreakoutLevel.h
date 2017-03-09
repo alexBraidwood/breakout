@@ -19,13 +19,13 @@ namespace breakout {
 class Level {
 public:
     std::vector<core::GameObject> bricks;
-    void load(const std::string& fileName);
+    void load(const std::string& fileName, int levelWidth, int levelHeight, core::Resources& resourceBatch);
     void draw(core::Resources& resourceBatch);
     bool isComplete();
     Level() = default;
 
 private:
-    void init(std::vector<std::vector<int>> tileData, int levelWidth, int levelHeight);
+    void init(const std::vector<std::vector<int>>& tileData, int levelWidth, int levelHeight, core::Resources& resourceBatch);
 
 
 };
