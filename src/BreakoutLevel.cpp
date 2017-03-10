@@ -96,3 +96,7 @@ void Level::init(const std::vector<std::vector<int>>& tileData, int levelWidth, 
         }
     }
 }
+
+void Level::draw(core::Resources& resourceBatch) {
+
+}
