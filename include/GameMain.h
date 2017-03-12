@@ -11,12 +11,16 @@
 #include <GameState.h>
 #include <SDL_GLWindow.h>
 #include <Resources.h>
+#include <vector>
+#include <BreakoutLevel.h>
 
 namespace core {
 
 class GameMain {
 public:
     SDL_GLWindow* glWindow;
+    std::vector<breakout::Level> levels;
+    int currentLevel;
     Resources resourceBatch;
     GameState state;
     float width, height;
@@ -26,6 +30,7 @@ public:
     void processInput(float dt);
     void update(float dt);
     void render();
+    GameMain();
 };
 
 }

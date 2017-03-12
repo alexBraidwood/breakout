@@ -14,6 +14,8 @@ find_library(SOIL
 file(MAKE_DIRECTORY textures)
 file(COPY
         textures/hello.png
+        textures/block.png
+        textures/solid_block.png
         DESTINATION textures/)
 
 # Shader file copy-over

@@ -23,6 +23,7 @@ public:
     void draw(core::Resources& resourceBatch);
     bool isComplete();
     Level() = default;
+    Level(const Level& other);
 
 private:
     void init(const std::vector<std::vector<int>>& tileData, int levelWidth, int levelHeight, core::Resources& resourceBatch);

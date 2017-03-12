@@ -12,6 +12,8 @@
 
 using namespace core;
 
+GameMain::GameMain() : currentLevel(0) { }
+
 void GameMain::init() {
     SDL_window* window = SDL_window::create(800, 600);
     width = 800.f;
@@ -25,10 +27,12 @@ void GameMain::init() {
     resourceBatch.loadShader("shaders/sprite_vertex.glsl", "shaders/sprite_fragment.glsl", "", "sprite");
     resourceBatch.getShader("sprite").use().setInteger("image", 0);
     resourceBatch.getShader("sprite").setMatrix4("projection", projection);
-    resourceBatch.loadTexture("textures/block_solid.png", GL_TRUE, "block_solid");
+    resourceBatch.loadTexture("textures/solid_block.png", GL_TRUE, "solid_block");
     resourceBatch.loadTexture("textures/block.png", GL_TRUE, "block");
-    auto levelone = breakout::Level();
+    breakout::Level levelone;
     levelone.load("levels/levelone.json", this->width, this->height * 0.5f, resourceBatch);
+    levels.push_back(levelone);
+    currentLevel = 1;
 }
 
 void GameMain::start() {
@@ -52,8 +56,8 @@ void GameMain::render() {
     glClearColor(1.f, 1.f, 1.f, 1.f);
     glClear(GL_COLOR_BUFFER_BIT);
     // TODO(): Render stuff
-
-
+    auto& level = this->levels[currentLevel-1];
+    level.draw(resourceBatch);
 
     glWindow->update();
 }

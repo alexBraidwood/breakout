@@ -32,6 +32,7 @@ public:
     GameObject(const std::string& name);
 
     virtual void draw(core::Resources& resourceBatch);
+    ~GameObject() = default;
 };
 }
 

@@ -63,7 +63,7 @@ void Level::init(const std::vector<std::vector<int>>& tileData, int levelWidth, 
                 gameObject.position = pos;
                 gameObject.size = size;
                 gameObject.color = glm::vec3(0.8f, 0.8f, 0.7f);
-                gameObject.texture = resourceBatch.getTexture("block_solid");
+                gameObject.texture = resourceBatch.getTexture("solid_block");
                 gameObject.isSolid = true;
                 this->bricks.push_back(gameObject);
             }
@@ -98,5 +98,24 @@ void Level::init(const std::vector<std::vector<int>>& tileData, int levelWidth, 
 }
 
 void Level::draw(core::Resources& resourceBatch) {
+    for (auto& brick : bricks) {
+        if (!brick.destroyed) {
+            brick.draw(resourceBatch);
+        }
+    }
+}
 
+bool Level::isComplete() {
+    for (auto& brick : bricks) {
+        if (!brick.isSolid && !brick.destroyed) {
+            return false;
+        }
+    }
+    return true;
+}
+
+Level::Level(const Level& other) {
+    for (auto& brick : other.bricks) {
+        this->bricks.push_back(brick);
+    }
 }
