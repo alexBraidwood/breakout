@@ -51,7 +51,7 @@ void Level::init(const std::vector<std::vector<int>>& tileData, int levelWidth, 
     auto height = tileData.size();
     auto width = tileData[0].size();
     float unitWidth = levelWidth / static_cast<float>(width);
-    float unitHeight = levelHeight / static_cast<float>(height);
+    float unitHeight = levelHeight / static_cast<float>(height*4);
 
     for (auto y = 0; y < height; ++y) {
         for (auto x = 0; x < width; ++x) {

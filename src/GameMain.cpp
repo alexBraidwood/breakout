@@ -15,11 +15,11 @@ using namespace core;
 GameMain::GameMain() : currentLevel(0) { }
 
 void GameMain::init() {
-    SDL_window* window = SDL_window::create(800, 600);
-    width = 800.f;
-    height = 600.f;
+    width = 1280.f;
+    height = 720.f;
+    SDL_window* window = SDL_window::create(this->width, this->height);
     glWindow = SDL_GLWindow::create(window);
-    glViewport(0, 0, 800, 600);
+    glViewport(0, 0, this->width, this->height);
     glEnable(GL_CULL_FACE);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
