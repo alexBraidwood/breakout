@@ -25,17 +25,19 @@ public:
      * @param spriteName Name of the sprite to draw as the paddle
      */
     Paddle(const std::string& spriteName)
-            : paddleSize(100, 20),
+            : spriteName(spriteName),
+              paddleSize(100, 20),
               paddleVelocity(500.f),
               paddleGameObject(core::GameObject(spriteName)) {
     }
 
     ~Paddle() = default;
 
+    std::string spriteName;
     glm::vec2 paddleSize;
     float paddleVelocity;
 
-    void init();
+    void init(core::Resources& resourceBatch);
     void position(const glm::vec2& pos);
     void draw(core::Resources& resourceBatch);
     void update();

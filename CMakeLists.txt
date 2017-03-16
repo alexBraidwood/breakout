@@ -57,5 +57,4 @@ target_include_directories(breakout PRIVATE
 
 MESSAGE(STATUS "Soil found at: " ${SOIL})
 
-target_compile_options(breakout PUBLIC -Weffc++)
 target_link_libraries(breakout PUBLIC ${SOIL} glew GL SDL2)

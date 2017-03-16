@@ -39,9 +39,9 @@ void GameMain::init() {
     playerPaddle = new Paddle("playerPaddle");
     playerPaddle->position(glm::vec2(
             this->width / 2 - playerPaddle->paddleSize.x / 2,
-            this->height - playerPaddle->paddleSize.y
+            this->height - playerPaddle->paddleSize.y - 10
     ));
-    playerPaddle->init();
+    playerPaddle->init(resourceBatch);
 
     currentLevel = 1;
 }

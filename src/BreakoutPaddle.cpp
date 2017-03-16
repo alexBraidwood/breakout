@@ -10,8 +10,10 @@
 using namespace breakout;
 
 
-void Paddle::init() {
+void Paddle::init(core::Resources& resourceBatch) {
     paddleGameObject.size = this->paddleSize;
+    paddleGameObject.color = glm::vec3(0.8f, 0.5f, 0.5f);
+    paddleGameObject.texture = resourceBatch.getTexture(spriteName);
 }
 
 void Paddle::position(const glm::vec2& pos) {
