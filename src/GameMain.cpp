@@ -8,13 +8,14 @@
 #include <GameMain.h>
 #include <SDL2/SDL.h>
 #include <glm/gtc/matrix_transform.hpp>
-#include <BreakoutLevel.h>
 
 using namespace core;
+using namespace breakout;
 
 GameMain::GameMain() : currentLevel(0) { }
 
 void GameMain::init() {
+
     width = 1280.f;
     height = 720.f;
     SDL_window* window = SDL_window::create(this->width, this->height);
@@ -29,9 +30,19 @@ void GameMain::init() {
     resourceBatch.getShader("sprite").setMatrix4("projection", projection);
     resourceBatch.loadTexture("textures/solid_block.png", GL_TRUE, "solid_block");
     resourceBatch.loadTexture("textures/block.png", GL_TRUE, "block");
+    resourceBatch.loadTexture("textures/breakout_paddle.png", GL_TRUE, "playerPaddle");
+
     breakout::Level levelone;
     levelone.load("levels/levelone.json", this->width, this->height * 0.5f, resourceBatch);
     levels.push_back(levelone);
+
+    playerPaddle = new Paddle("playerPaddle");
+    playerPaddle->position(glm::vec2(
+            this->width / 2 - playerPaddle->paddleSize.x / 2,
+            this->height - playerPaddle->paddleSize.y
+    ));
+    playerPaddle->init();
+
     currentLevel = 1;
 }
 
@@ -58,6 +69,16 @@ void GameMain::render() {
     // TODO(): Render stuff
     auto& level = this->levels[currentLevel-1];
     level.draw(resourceBatch);
+    playerPaddle->draw(resourceBatch);
 
     glWindow->update();
+}
+
+GameMain::~GameMain() {
+    if (glWindow) {
+        delete glWindow;
+    }
+    if (playerPaddle) {
+        delete playerPaddle;
+    }
 }

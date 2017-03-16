@@ -16,6 +16,7 @@ file(COPY
         textures/hello.png
         textures/block.png
         textures/solid_block.png
+        textures/breakout_paddle.png
         DESTINATION textures/)
 
 # Shader file copy-over
@@ -44,7 +45,8 @@ target_sources(breakout PRIVATE
         src/GameClock.cpp
         src/Sprite.cpp
         src/GameObject.cpp
-        src/BreakoutLevel.cpp)
+        src/BreakoutLevel.cpp
+        src/BreakoutPaddle.cpp)
 
 target_include_directories(breakout PRIVATE
         include
@@ -55,4 +57,5 @@ target_include_directories(breakout PRIVATE
 
 MESSAGE(STATUS "Soil found at: " ${SOIL})
 
+target_compile_options(breakout PUBLIC -Weffc++)
 target_link_libraries(breakout PUBLIC ${SOIL} glew GL SDL2)

@@ -15,5 +15,6 @@ int main()
         game.render();
     }
     game.resourceBatch.clear();
+
     return 0;
 }

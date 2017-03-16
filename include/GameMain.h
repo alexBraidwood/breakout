@@ -13,11 +13,13 @@
 #include <Resources.h>
 #include <vector>
 #include <BreakoutLevel.h>
+#include <BreakoutPaddle.h>
 
 namespace core {
 
 class GameMain {
 public:
+    breakout::Paddle* playerPaddle;
     SDL_GLWindow* glWindow;
     std::vector<breakout::Level> levels;
     int currentLevel;
@@ -31,6 +33,7 @@ public:
     void update(float dt);
     void render();
     GameMain();
+    ~GameMain();
 };
 
 }
