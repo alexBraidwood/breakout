@@ -57,8 +57,17 @@ void GameMain::processInput(float dt) {
 void GameMain::update(float dt) {
     SDL_Event event;
     SDL_PollEvent(&event);
-    if (event.type==SDL_QUIT) {
-        state = GameState::Quit;
+    if (event.type == SDL_WINDOWEVENT) {
+        if (event.window.type==SDL_QUIT) {
+            state = GameState::Quit;
+        }
+    }
+    if (event.type == SDL_KEYDOWN) {
+        // Handle key press
+    }
+
+    if (event.type == SDL_KEYUP) {
+        // Handle key release
     }
 
 }
