@@ -19,6 +19,9 @@ namespace core {
 
 class GameMain {
 public:
+    bool leftDown;
+    bool rightDown;
+
     breakout::Paddle* playerPaddle;
     SDL_GLWindow* glWindow;
     std::vector<breakout::Level> levels;

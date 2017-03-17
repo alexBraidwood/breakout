@@ -12,7 +12,9 @@
 using namespace core;
 using namespace breakout;
 
-GameMain::GameMain() : currentLevel(0) { }
+GameMain::GameMain() : leftDown(false),
+                       rightDown(false),
+                       currentLevel(0) { }
 
 void GameMain::init() {
 
@@ -51,25 +53,42 @@ void GameMain::start() {
 }
 
 void GameMain::processInput(float dt) {
-
+    if (leftDown) {
+        this->playerPaddle->move(dt, true);
+    }
+    if (rightDown) {
+        this->playerPaddle->move(dt, false);
+    }
 }
 
 void GameMain::update(float dt) {
     SDL_Event event;
     SDL_PollEvent(&event);
+
     if (event.type == SDL_WINDOWEVENT) {
-        if (event.window.type==SDL_QUIT) {
+
+    }
+
+    if (event.type == SDL_QUIT) {
+        state = GameState::Quit;
+    }
+
+    if (event.type == SDL_KEYDOWN) {
+        // For GUI events
+        if (event.key.keysym.sym == SDLK_ESCAPE) {
+            // Pop menu instead
             state = GameState::Quit;
         }
     }
-    if (event.type == SDL_KEYDOWN) {
-        // Handle key press
-    }
 
     if (event.type == SDL_KEYUP) {
-        // Handle key release
+        // For GUI events
     }
 
+    SDL_PumpEvents();
+    auto keyStates = SDL_GetKeyboardState(nullptr);
+    leftDown = keyStates[SDL_SCANCODE_LEFT] == 1 ;
+    rightDown = keyStates[SDL_SCANCODE_RIGHT] == 1;
 }
 
 void GameMain::render() {

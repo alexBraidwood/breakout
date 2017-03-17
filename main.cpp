@@ -1,5 +1,6 @@
 #include <GameMain.h>
 #include <GameClock.h>
+#include <SDL2/SDL.h>
 
 int main()
 {
@@ -14,6 +15,7 @@ int main()
         game.update(currentDt);
         game.render();
     }
+    SDL_Quit();
     game.resourceBatch.clear();
     return 0;
 }

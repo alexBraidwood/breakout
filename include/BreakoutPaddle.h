@@ -37,6 +37,7 @@ public:
     glm::vec2 paddleSize;
     float paddleVelocity;
 
+    void move(float dt, bool movingLeft);
     void init(core::Resources& resourceBatch);
     void position(const glm::vec2& pos);
     void draw(core::Resources& resourceBatch);
