@@ -35,6 +35,22 @@ file(COPY
 set(CMAKE_C_FLAGS_DEBUG "-DDEBUG")
 
 target_sources(breakout PRIVATE
+        # Headers
+        include/BreakoutBall.h
+        include/BreakoutLevel.h
+        include/BreakoutPaddle.h
+        include/GameClock.h
+        include/GameMain.h
+        include/GameObject.h
+        include/GameState.h
+        include/Resources.h
+        include/SDL_GLWindow.h
+        include/SDL_window.h
+        include/Shader.h
+        include/Sprite.h
+        include/Texture2d.h
+
+        # Source Files
         main.cpp
         src/GameMain.cpp
         src/Shader.cpp
@@ -46,7 +62,10 @@ target_sources(breakout PRIVATE
         src/Sprite.cpp
         src/GameObject.cpp
         src/BreakoutLevel.cpp
-        src/BreakoutPaddle.cpp)
+        src/BreakoutPaddle.cpp
+        src/BreakoutBall.cpp)
+
+
 
 target_include_directories(breakout PRIVATE
         include

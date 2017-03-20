@@ -54,10 +54,10 @@ void GameMain::start() {
 
 void GameMain::processInput(float dt) {
     if (leftDown) {
-        this->playerPaddle->move(dt, true);
+        this->playerPaddle->move(dt, this->width, true);
     }
     if (rightDown) {
-        this->playerPaddle->move(dt, false);
+        this->playerPaddle->move(dt, this->width, false);
     }
 }
 
