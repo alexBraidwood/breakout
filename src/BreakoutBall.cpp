@@ -12,17 +12,16 @@ using namespace core;
 
 Ball::Ball(const std::string& spriteName) : ballGameObject(spriteName), radius(0), held(true) {}
 
-void Ball::init() {
-    this->radius = ball_constants::BallRadius;
-    this->ballGameObject.size.x = radius;
-    this->ballGameObject.size.y = radius;
-    this->ballGameObject.velocity = ball_constants::InitialBallVelocity;
+void Ball::init(Resources& resourceBatch) {
+    this->init(ball_constants::BallRadius, ball_constants::InitialBallVelocity, resourceBatch);
 }
 
-void Ball::init(float radius, glm::vec2 velocity) {
+void Ball::init(float radius, glm::vec2 velocity, Resources& resourceBatch) {
     this->radius = radius;
     this->ballGameObject.size.x = radius;
     this->ballGameObject.size.y = radius;
+    this->ballGameObject.color = glm::vec3(1.f, 0.5f, 1.f);
+    this->ballGameObject.texture = resourceBatch.getTexture(this->ballGameObject.spriteName);
     this->ballGameObject.velocity = velocity;
 }
 

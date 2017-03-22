@@ -47,7 +47,7 @@ void GameMain::init() {
     playerPaddle->init(resourceBatch);
 
     gameBall = new Ball("ball");
-    gameBall->init();
+    gameBall->init(resourceBatch);
     gameBall->ballGameObject.position = playerPaddle->paddleGameObject.position +
             glm::vec2(playerPaddle->paddleSize.x / 2 - gameBall->radius, -gameBall->radius * 2);
 

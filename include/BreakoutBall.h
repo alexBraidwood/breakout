@@ -31,8 +31,8 @@ public:
     Ball(const std::string& spriteName);
     glm::vec2 move(float dt, const core::Screen& screen);
     void reset(glm::vec2 position, glm::vec2 velocity);
-    void init(float radius, glm::vec2 velocity);
-    void init();
+    void init(float radius, glm::vec2 velocity, core::Resources& resourceBatch);
+    void init(core::Resources& resourceBatch);
     void draw(core::Resources& resourceBatch);
 };
 }
