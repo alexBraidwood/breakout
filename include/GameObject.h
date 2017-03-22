@@ -17,7 +17,7 @@
 namespace core {
 class GameObject {
 public:
-    std::string name;
+    std::string spriteName;
     glm::vec2 position;
     glm::vec2 size;
     glm::vec2 velocity;
@@ -29,7 +29,7 @@ public:
 
     graphics::Texture2d texture;
 
-    GameObject(const std::string& name);
+    GameObject(const std::string& spriteName);
 
     virtual void draw(core::Resources& resourceBatch);
     virtual ~GameObject() = default;

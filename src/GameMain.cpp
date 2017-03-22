@@ -18,32 +18,38 @@ GameMain::GameMain() : leftDown(false),
 
 void GameMain::init() {
 
-    width = 1280.f;
-    height = 720.f;
-    SDL_window* window = SDL_window::create(this->width, this->height);
+    gameScreen.width = 1280;
+    gameScreen.height = 720;
+    SDL_window* window = SDL_window::create(this->gameScreen.width, this->gameScreen.height);
     glWindow = SDL_GLWindow::create(window);
-    glViewport(0, 0, this->width, this->height);
+    glViewport(0, 0, this->gameScreen.width, this->gameScreen.height);
     glEnable(GL_CULL_FACE);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glm::mat4 projection = glm::ortho(0.f, this->width, this->height, 0.f, -1.f, 1.f);
+    glm::mat4 projection = glm::ortho(0.f, static_cast<float>(this->gameScreen.width), static_cast<float>(this->gameScreen.height), 0.f, -1.f, 1.f);
     resourceBatch.loadShader("shaders/sprite_vertex.glsl", "shaders/sprite_fragment.glsl", "", "sprite");
     resourceBatch.getShader("sprite").use().setInteger("image", 0);
     resourceBatch.getShader("sprite").setMatrix4("projection", projection);
     resourceBatch.loadTexture("textures/solid_block.png", GL_TRUE, "solid_block");
     resourceBatch.loadTexture("textures/block.png", GL_TRUE, "block");
     resourceBatch.loadTexture("textures/breakout_paddle.png", GL_TRUE, "playerPaddle");
+    resourceBatch.loadTexture("textures/breakout_ball.png", GL_TRUE, "ball");
 
     breakout::Level levelone;
-    levelone.load("levels/levelone.json", this->width, this->height * 0.5f, resourceBatch);
+    levelone.load("levels/levelone.json", this->gameScreen.width, this->gameScreen.height * 0.5f, resourceBatch);
     levels.push_back(levelone);
 
     playerPaddle = new Paddle("playerPaddle");
     playerPaddle->position(glm::vec2(
-            this->width / 2 - playerPaddle->paddleSize.x / 2,
-            this->height - playerPaddle->paddleSize.y - 10
+            this->gameScreen.width / 2 - playerPaddle->paddleSize.x / 2,
+            this->gameScreen.height - playerPaddle->paddleSize.y - 10
     ));
     playerPaddle->init(resourceBatch);
+
+    gameBall = new Ball("ball");
+    gameBall->init();
+    gameBall->ballGameObject.position = playerPaddle->paddleGameObject.position +
+            glm::vec2(playerPaddle->paddleSize.x / 2 - gameBall->radius, -gameBall->radius * 2);
 
     currentLevel = 1;
 }
@@ -54,10 +60,10 @@ void GameMain::start() {
 
 void GameMain::processInput(float dt) {
     if (leftDown) {
-        this->playerPaddle->move(dt, this->width, true);
+        this->playerPaddle->move(dt, this->gameScreen.width, true);
     }
     if (rightDown) {
-        this->playerPaddle->move(dt, this->width, false);
+        this->playerPaddle->move(dt, this->gameScreen.width, false);
     }
 }
 
@@ -89,6 +95,7 @@ void GameMain::update(float dt) {
     auto keyStates = SDL_GetKeyboardState(nullptr);
     leftDown = keyStates[SDL_SCANCODE_LEFT] == 1 ;
     rightDown = keyStates[SDL_SCANCODE_RIGHT] == 1;
+    gameBall->move(dt, gameScreen);
 }
 
 void GameMain::render() {
@@ -98,6 +105,7 @@ void GameMain::render() {
     auto& level = this->levels[currentLevel-1];
     level.draw(resourceBatch);
     playerPaddle->draw(resourceBatch);
+    gameBall->draw(resourceBatch);
 
     glWindow->update();
 }

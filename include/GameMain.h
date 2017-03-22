@@ -12,8 +12,10 @@
 #include <SDL_GLWindow.h>
 #include <Resources.h>
 #include <vector>
+#include <Screen.h>
 #include <BreakoutLevel.h>
 #include <BreakoutPaddle.h>
+#include "BreakoutBall.h"
 
 namespace core {
 
@@ -23,12 +25,13 @@ public:
     bool rightDown;
 
     breakout::Paddle* playerPaddle;
+    breakout::Ball* gameBall;
     SDL_GLWindow* glWindow;
     std::vector<breakout::Level> levels;
     int currentLevel;
     Resources resourceBatch;
     GameState state;
-    float width, height;
+    Screen gameScreen;
 
     void start();
     void init();

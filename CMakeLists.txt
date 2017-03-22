@@ -17,6 +17,7 @@ file(COPY
         textures/block.png
         textures/solid_block.png
         textures/breakout_paddle.png
+        textures/breakout_ball.png
         DESTINATION textures/)
 
 # Shader file copy-over

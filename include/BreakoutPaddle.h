@@ -17,8 +17,6 @@
 namespace breakout {
 
 class Paddle {
-    core::GameObject paddleGameObject;
-
 public:
     /**
      * Constructs a BreakoutPaddle, which manages the game object and houses paddle logic.
@@ -36,6 +34,7 @@ public:
     std::string spriteName;
     glm::vec2 paddleSize;
     float paddleVelocity;
+    core::GameObject paddleGameObject;
 
     void move(float dt, int screenWidth, bool movingLeft);
     void init(core::Resources& resourceBatch);

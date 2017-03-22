@@ -10,20 +10,30 @@
 #define BREAKOUT_BREAKOUTBALL_H
 
 #include <GameObject.h>
+#include <Screen.h>
+#include <Resources.h>
 
 namespace breakout {
-class Ball {
-    core::GameObject ballGameObject;
+    namespace ball_constants {
+        const glm::vec2 InitialBallVelocity(100.f, -350.f);
+        const float BallRadius(12.5f);
+    }
+}
 
+namespace breakout {
+
+class Ball {
 public:
     float radius;
     bool held;
+    core::GameObject ballGameObject;
 
-    Ball();
-    Ball(const std::string& spriteName, glm::vec2 position, float radius, glm::vec2 velocity);
-
-    glm::vec2 move(float dt, int screenWidth);
+    Ball(const std::string& spriteName);
+    glm::vec2 move(float dt, const core::Screen& screen);
     void reset(glm::vec2 position, glm::vec2 velocity);
+    void init(float radius, glm::vec2 velocity);
+    void init();
+    void draw(core::Resources& resourceBatch);
 };
 }
 
