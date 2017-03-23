@@ -2,7 +2,7 @@
 #include <GameClock.h>
 #include <SDL2/SDL.h>
 
-int main()
+int main(int argc, char* args[])
 {
     core::GameMain game;
     core::GameClock clock;
