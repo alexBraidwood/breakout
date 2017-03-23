@@ -16,12 +16,12 @@ shaders
 *.userprefs
 
 # Build results
+Win32/
+Win64/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-x64/
-x86/
 bld/
 [Oo]bj/
 [Ll]og/
