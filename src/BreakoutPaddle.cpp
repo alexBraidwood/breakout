@@ -20,7 +20,7 @@ void Paddle::position(const glm::vec2& pos) {
     paddleGameObject.position = pos;
 }
 
-void Paddle::move(float dt, int screenWidth, bool movingLeft) {
+float Paddle::move(float dt, int screenWidth, bool movingLeft) {
     auto velocity = movingLeft ? -paddleVelocity : paddleVelocity;
     auto originalPos = paddleGameObject.position.x;
     auto destination = originalPos + (velocity * dt);
@@ -29,6 +29,7 @@ void Paddle::move(float dt, int screenWidth, bool movingLeft) {
     }
     auto lerp = (destination - originalPos);
     this->paddleGameObject.position.x += lerp;
+	return lerp;
 }
 
 void Paddle::draw(core::Resources& resourceBatch) {

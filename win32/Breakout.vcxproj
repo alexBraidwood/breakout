@@ -70,12 +70,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>..\external\SDL2\include;..\external\SOIL\src;..\external\rapidjson;..\external\glm;..\external\glew\include;..\include;$(IncludePath)</IncludePath>
-    <LibraryPath>lib\Win32;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <LibraryPath>lib\x86;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <SourcePath>$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>..\external\SDL2\include;..\external\SOIL\src;..\external\rapidjson;..\external\glm;..\external\glew\include;..\include;$(IncludePath)</IncludePath>
-    <LibraryPath>lib\Win32;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <LibraryPath>lib\x86;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <SourcePath>$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -102,7 +102,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)"\bin\Win32\*.dll "$(TargetDir)" /D /K /Y</Command>
+      <Command>XCOPY "$(SolutionDir)"\bin\x86\*.dll "$(TargetDir)" /D /K /Y</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>XCOPY "$(SolutionDir)"\..\shaders\*.glsl "$(TargetDir)"\shaders\ /D /K /Y
@@ -144,7 +144,7 @@ XCOPY "$(SolutionDir)"\..\levels\*.json "$(TargetDir)"\levels\ /D /K /Y</Command
       <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;glew32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)"\bin\Win32\*.dll "$(TargetDir)" /D /K /Y</Command>
+      <Command>XCOPY "$(SolutionDir)"\bin\x86\*.dll "$(TargetDir)" /D /K /Y</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>XCOPY "$(SolutionDir)"\..\shaders\*.glsl "$(TargetDir)"\shaders\ /D /K /Y
@@ -209,6 +209,18 @@ XCOPY "$(SolutionDir)"\..\levels\*.json "$(TargetDir)"\levels\ /D /K /Y</Command
     <ProjectReference Include="..\external\SOIL\projects\VC9\SOIL.vcxproj">
       <Project>{c32fb2b4-500c-43cd-a099-eecce079d3f1}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\levels\levelone.json" />
+    <None Include="..\shaders\sprite_fragment.glsl" />
+    <None Include="..\shaders\sprite_vertex.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\textures\block.png" />
+    <Image Include="..\textures\breakout_ball.png" />
+    <Image Include="..\textures\breakout_paddle.png" />
+    <Image Include="..\textures\hello.png" />
+    <Image Include="..\textures\solid_block.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

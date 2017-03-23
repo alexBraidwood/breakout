@@ -45,10 +45,6 @@ glm::vec2 Ball::move(float dt, const Screen& gameScreen) {
             ballGameObject.velocity.y = -ballGameObject.velocity.y;
             ballGameObject.position.y = 0.f;
         }
-        else if (ballGameObject.position.y >= gameScreen.height) {
-            ballGameObject.velocity.y = -ballGameObject.velocity.y;
-            ballGameObject.position.y = gameScreen.height - ballGameObject.size.y;
-        }
     }
 
     return ballGameObject.position;

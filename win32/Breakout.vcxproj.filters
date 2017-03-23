@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\shaders">
+      <UniqueIdentifier>{5003604d-f216-40b4-960d-bb411815fbd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\textures">
+      <UniqueIdentifier>{a332f013-6265-49cf-8111-28dfd9837c2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\levels">
+      <UniqueIdentifier>{57b1f12f-dc6f-4e71-9447-f3e48f5bf5d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\BreakoutBall.cpp">
@@ -98,5 +107,33 @@
     <ClInclude Include="..\include\Texture2d.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\shaders\sprite_fragment.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="..\shaders\sprite_vertex.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="..\levels\levelone.json">
+      <Filter>Resource Files\levels</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\textures\block.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="..\textures\breakout_ball.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="..\textures\breakout_paddle.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="..\textures\hello.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="..\textures\solid_block.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

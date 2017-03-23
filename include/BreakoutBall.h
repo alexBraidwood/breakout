@@ -16,7 +16,7 @@
 namespace breakout {
     namespace ball_constants {
         const glm::vec2 InitialBallVelocity(100.f, -350.f);
-        const float BallRadius(12.5f);
+        const float BallRadius(20.f);
     }
 }
 

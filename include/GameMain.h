@@ -23,6 +23,7 @@ class GameMain {
 public:
     bool leftDown;
     bool rightDown;
+	bool spaceDown;
 
     breakout::Paddle* playerPaddle;
     breakout::Ball* gameBall;
@@ -32,7 +33,9 @@ public:
     Resources resourceBatch;
     GameState state;
     Screen gameScreen;
-
+	
+	bool isColliding(const GameObject& objectA, const GameObject& objectB);
+	void checkCollisions();
     void start();
     void init();
     void processInput(float dt);

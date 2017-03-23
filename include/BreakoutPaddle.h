@@ -36,7 +36,7 @@ public:
     float paddleVelocity;
     core::GameObject paddleGameObject;
 
-    void move(float dt, int screenWidth, bool movingLeft);
+    float move(float dt, int screenWidth, bool movingLeft);
     void init(core::Resources& resourceBatch);
     void position(const glm::vec2& pos);
     void draw(core::Resources& resourceBatch);
