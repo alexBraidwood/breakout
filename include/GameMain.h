@@ -15,7 +15,7 @@
 #include <Screen.h>
 #include <BreakoutLevel.h>
 #include <BreakoutPaddle.h>
-#include "BreakoutBall.h"
+#include <BreakoutBall.h>
 
 namespace core {
 
@@ -35,6 +35,7 @@ public:
     Screen gameScreen;
 	
 	bool isColliding(const GameObject& objectA, const GameObject& objectB);
+	bool isColliding(const breakout::Ball& ball, const GameObject& objectB);
 	void checkCollisions();
     void start();
     void init();

@@ -58,7 +58,7 @@ void GameMain::init() {
     currentLevel = 1;
 }
 
-bool core::GameMain::isColliding(const GameObject& objectA, const GameObject& objectB)
+bool GameMain::isColliding(const GameObject& objectA, const GameObject& objectB)
 {
 	bool collisionX = objectA.position.x + objectA.size.x >= objectB.position.x &&
 		objectB.position.x + objectB.size.x >= objectA.position.x;
@@ -70,13 +70,28 @@ bool core::GameMain::isColliding(const GameObject& objectA, const GameObject& ob
 void GameMain::checkCollisions() {
 	for (auto& brick : this->levels[currentLevel-1].bricks) {
 		if (brick.destroyed == false) {
-			if (isColliding(gameBall->ballGameObject, brick)) {
+			if (isColliding(*gameBall, brick)) {
 				if (brick.isSolid == false) {
 					brick.destroyed = true;
 				}
 			}
 		}
 	}
+}
+
+bool GameMain::isColliding(const breakout::Ball& ball, const GameObject& objectB) {
+	// Circle Collision
+	glm::vec2 ballCenter(ball.ballGameObject.position + ball.radius);
+	glm::vec2 aabbHalfExtents(objectB.size.x / 2, objectB.size.y / 2);
+	glm::vec2 aabbCenter(
+		objectB.position.x + aabbHalfExtents.x,
+		objectB.position.y + aabbHalfExtents.y
+	);
+	glm::vec2 difference = ballCenter - aabbCenter;
+	glm::vec2 clamped = glm::clamp(difference, -aabbHalfExtents, aabbHalfExtents);
+	glm::vec2 closest = aabbCenter + clamped;
+	difference = closest - ballCenter;
+	return glm::length(difference) < ball.radius;
 }
 
 void GameMain::start() {
